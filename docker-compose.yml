@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  customer-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: customer-web
+    restart: always
+    ports:
+      - "${APP_PORT}:80"
+    command: ["nginx", "-g", "daemon off;"]
+    volumes:
+      - .env:/var/www/app/.env
+      - ./dist:/var/www/app/dist
